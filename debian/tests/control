@@ -1,0 +1,2 @@
+Test-Command: debian/tests/run_test.sh
+Restrictions: allow-stderr
