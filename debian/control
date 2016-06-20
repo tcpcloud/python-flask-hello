@@ -1,0 +1,17 @@
+Source: python-flask-hello
+Maintainer: tcpcloud Angry Smurf Team <pkg-team@tcpcloud.eu>
+Section: web
+Priority: optional
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+Homepage: http://www.tcpcloud.eu
+Vcs-Browser: https://github.com/tcpcloud/python-flask-hello
+Vcs-Git: https://github.com/tcpcloud/python-flask-hello.git
+
+Package: python-flask-hello
+Architecture: all
+Depends: ${misc:Depends}, python-flask
+Description: Flask hello testing app
+ The Smurfs (French: Les Schtroumpfs; Dutch: De Smurfen) is a Belgian comic
+ franchise centered on a fictional colony of small blue humanoids who live in
+ mushroom-shaped houses in the forest.
