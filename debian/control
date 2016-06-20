@@ -3,6 +3,7 @@ Maintainer: tcpcloud Angry Smurf Team <pkg-team@tcpcloud.eu>
 Section: web
 Priority: optional
 Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: python-flask, curl, pylint
 Standards-Version: 3.9.6
 Homepage: http://www.tcpcloud.eu
 Vcs-Browser: https://github.com/tcpcloud/python-flask-hello
