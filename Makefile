@@ -7,7 +7,7 @@ NAME?="python-flask-hello"
 install:
 
 clean:
-	[ -d log ] && rm -rf log
+	[ ! -d log ] || rm -rf log
 
 test: errorlint
 	./tests/run_test.sh
