@@ -14,7 +14,7 @@ test: errorlint
 	./tests/run_test.sh
 
 docker:
-	mkdir log
+	[ -d log ] || mkdir log
 	docker build --no-cache -t ${ORGANIZATION}/${NAME}:${TAG_VERSION} . 2>&1 | tee log/${NAME}.log
 
 lint:
