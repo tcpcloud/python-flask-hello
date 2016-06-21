@@ -2,6 +2,8 @@
 
 RET=1
 
+cd /srv/hello
+
 check_proc() {
     if [ ! -d /proc/$1 ]; then
         echo "ERROR: Process did not start" 1>&2
