@@ -3,6 +3,7 @@
 PYLINT=$(shell which pylint)
 ORGANIZATION?="tcpcloud"
 NAME?="python-flask-hello"
+TAG_VERSION?="latest"
 
 install:
 
@@ -14,7 +15,7 @@ test: errorlint
 
 docker:
 	mkdir log
-	docker build --no-cache -t ${ORGANIZATION}/${NAME} . 2>&1 | tee log/${NAME}.log
+	docker build --no-cache -t ${ORGANIZATION}/${NAME}:${TAG_VERSION} . 2>&1 | tee log/${NAME}.log
 
 lint:
 	test -n ${PYLINT}
