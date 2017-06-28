@@ -4,8 +4,8 @@ FROM ubuntu:trusty
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
     apt-get install -y wget && \
-    echo "deb [arch=amd64] http://apt.tcpcloud.eu/nightly trusty main security tcp" > /etc/apt/sources.list && \
-    wget -O - http://apt.tcpcloud.eu/public.gpg | apt-key add -
+    echo "deb [arch=amd64] http://apt-mk.mirantis.com/trusty/ nightly extra" >> /etc/apt/sources.list.d/mirantis.list && \
+    wget -O - http://apt-mk.mirantis.com/public.gpg | apt-key add -
 
 RUN apt-get update && apt-get install -y python-flask-hello
 
