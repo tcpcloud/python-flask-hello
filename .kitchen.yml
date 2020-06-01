@@ -1,0 +1,63 @@
+---
+driver:
+  name: docker
+
+provisioner:
+  #name: shell
+
+verifier:
+  name: inspec
+  sudo: true
+  # not working
+  # test_base_root: tests
+
+platforms:
+
+  - name: ubuntu-12.04
+    driver_config:
+      image: ubuntu:12.04
+      platform: ubuntu
+    driver:
+      provision_command:
+        - apt-get install -y python-pip git
+        - sudo pip install flask
+
+  # Mind the difference 12.04 and 14.04 - both works, but ...
+  - name: ubuntu-14.04
+    driver:
+      provision_command:
+        - apt-get install -y python-pip git
+        - sudo pip install flask
+
+  - name: centos # NOTE, there is an issue if centos-7 as name is used
+    driver:
+      provision_command:
+        - sed -i -e "s/Defaults    requiretty.*/#Defaults    requiretty/g" /etc/sudoers
+        - yum install -y git
+        - curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+        - python get-pip.py
+        - sudo pip install flask
+
+suites:
+
+  # assumed to be used with kitchen-docker (but I failed to upload a local/repo directory)
+  # using shell provisioner, but you have to script install dependencies
+  - name: simpliest
+    test_base_root: tests
+    driver:
+      volume:
+        - <%= ENV['PWD'] %>:/srv/hello
+    provisioner:
+      name: shell
+      script: tests/run_test.sh
+
+  # require to add Berksfile in repo
+  # require to add metadata.rb in repo
+  # require to add recipes/default.rb in repo
+  # install platform independent all prerequisites
+  - name: default-recipe
+    run_list:
+    - recipe[python-flask-demo::default]
+  # NOTE, chef allow to run chef-apply 'recipe.rb' to do the miracle (ie as provisioner part), but in this case we need one external cookbook to get
+  # env. ready (ie virtualenv; however pip install etc  could be system wide and as part of recipe.rb)
+
